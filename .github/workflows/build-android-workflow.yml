@@ -23,7 +23,11 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.4.1
       with:
-        node-version: 16.17.0
+        node-version: 16.x
+        cache: "yarn"
+        
+    - name: Install dependencies
+      run: yarn install
 
     - name: Grant execute permission for gradlew
       working-directory: ./android
