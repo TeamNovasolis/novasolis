@@ -57,7 +57,12 @@ jobs:
       run: ./gradlew build
 
     - name: Output
-      run: "ls -la android/app"
+      run:  |
+        ls -la android/app
+        ls -la android/app/build
+        ls -la android/app/build/outputs
+        ls -la android/app/build/outputs/apk
+        ls -la android/app/build/outputs/apk/release
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
