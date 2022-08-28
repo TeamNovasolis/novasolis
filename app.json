@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Novasolis",
+    "slug": "novasolis",
+    "owner": "teamnovasolis",
+    "version": "1.0.0",
+    "assetBundlePatterns": ["**/*"]
+  },
+  "name": "novasolis"
+}

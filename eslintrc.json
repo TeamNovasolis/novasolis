@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {}
+}
