@@ -1,5 +1,14 @@
 import { MD3Theme, MD3DarkTheme } from 'react-native-paper';
 
+export const themeDefinition = {
+  bgPrimary: '#161827',
+  bgSecondary: '#262837',
+  bgDark: '#131524',
+  primary: '#B5179E',
+  primaryTranslucent: '#B5179E',
+  textColor: '#FFFFFF'
+};
+
 export const reactNativePaperTheme: MD3Theme = {
   ...MD3DarkTheme,
   dark: true,
@@ -8,10 +17,8 @@ export const reactNativePaperTheme: MD3Theme = {
   mode: 'exact',
   colors: {
     ...MD3DarkTheme.colors,
-    surface: '#161827',
-    background: '#161827',
-    primary: '#B5179E',
-    secondary: '#262837',
-    tertiary: '#a1b2c3'
+    surface: themeDefinition.bgPrimary,
+    background: themeDefinition.bgPrimary,
+    primary: themeDefinition.primary
   }
 };

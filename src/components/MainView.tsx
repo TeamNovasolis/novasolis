@@ -28,7 +28,7 @@ export function MainView() {
 
   const renderScene = BottomNavigation.SceneMap({
     home: () => (
-      <PageWrapper title="Home">
+      <PageWrapper title="Your Devices">
         <Home />
       </PageWrapper>
     ),

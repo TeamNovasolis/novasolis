@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { Appbar, MD3DarkTheme, MD3Theme } from 'react-native-paper';
+import { Appbar, Text } from 'react-native-paper';
 
 type PageWrapperProps = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type PageWrapperProps = {
 export function PageWrapper({ children, title }: PageWrapperProps) {
   return (
     <View>
-      <Appbar.Header>
+      <Appbar.Header mode="large">
         <Appbar.Content title={title} />
       </Appbar.Header>
       {children}
