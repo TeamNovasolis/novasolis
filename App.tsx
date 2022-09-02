@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 const a = '#262837';
 
 export default function App() {
-
   return (
     <PaperProvider theme={reactNativePaperTheme}>
       <StatusBar style="light" />

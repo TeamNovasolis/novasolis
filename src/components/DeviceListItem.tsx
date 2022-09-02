@@ -21,7 +21,7 @@ export function DeviceListItem({ name, currentEffect }: DeviceListItemProps) {
             style={{ width: 80, height: 80, resizeMode: 'contain' }}
             source={require('../assets/devices/example-icon-small-1.png')}
           />
-          <View className='flex flex-col'>
+          <View className="flex flex-col">
             <Text variant="bodyLarge">{name}</Text>
             <View className="flex flex-row">
               <Chip
