@@ -9988,6 +9988,7 @@ __metadata:
     expo-splash-screen: 0.16.2
     expo-status-bar: 1.4.0
     nativewind: 2.0.4
+    qrcode-terminal: ^0.12.0
     react: 18.0.0
     react-dom: 18.0.0
     react-native: 0.69.5
@@ -9996,7 +9997,7 @@ __metadata:
     react-native-vector-icons: ^9.2.0
     react-native-web: 0.18.8
     tailwindcss: 3.1.8
-    typescript: ~4.3.5
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -11475,6 +11476,15 @@ __metadata:
   bin:
     qrcode-terminal: ./bin/qrcode-terminal.js
   checksum: ad146ea1e339e1745402a3ea131631f64f40f0d1ff9cc6bd9c21677feaa1ca6dcd32eadf188fd3febdab8bf6191b3d24d533454903a72543645a72820e4d324c
+  languageName: node
+  linkType: hard
+
+"qrcode-terminal@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "qrcode-terminal@npm:0.12.0"
+  bin:
+    qrcode-terminal: ./bin/qrcode-terminal.js
+  checksum: 51638d11d080e06ef79ef2d5cfe911202159e48d2873d6a80a3c5489b4b767acf4754811ceba4e113db8f41f61a06c163bcb17e6e18e6b34e04a7a5155dac974
   languageName: node
   linkType: hard
 
@@ -13765,7 +13775,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~4.3.5":
+"typescript@npm:4.3.5":
   version: 4.3.5
   resolution: "typescript@npm:4.3.5"
   bin:
@@ -13775,7 +13785,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@~4.3.5#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.3.5#~builtin<compat/typescript>":
   version: 4.3.5
   resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=a1c5e5"
   bin:
