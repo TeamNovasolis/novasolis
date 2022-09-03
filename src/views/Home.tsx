@@ -1,5 +1,6 @@
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { DeviceListItem } from '../components/DeviceListItem';
+import { PageWrapper } from '../components/PageWrapper';
 
 export function Home() {
   const devices = [
@@ -22,11 +23,19 @@ export function Home() {
     {
       name: 'Cloudly Light 2',
       currentEffect: 'weather'
+    },
+    {
+      name: 'Cloudly Light 2',
+      currentEffect: 'weather'
+    },
+    {
+      name: 'Cloudly Light 2',
+      currentEffect: 'weather'
     }
   ];
 
   return (
-    <ScrollView className="px-4" style={{ marginBottom: 175 }}>
+    <PageWrapper title="Your Devices">
       {devices.map((light, index) => (
         <View key={index}>
           <DeviceListItem
@@ -35,6 +44,6 @@ export function Home() {
           />
         </View>
       ))}
-    </ScrollView>
+    </PageWrapper>
   );
 }
