@@ -1,11 +1,8 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useRef } from 'react';
 import { ScrollView, Animated, View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { textSizeEasing } from '../theme/easing';
 import { themeDefinition } from '../theme/reactNativePaperTheme';
-import { Appbar } from 'react-native-paper';
-import { AddDevice } from '../views/AddDevice';
 
 type PageWrapperProps = {
   children: React.ReactNode;
@@ -43,6 +40,12 @@ export function PageWrapper({ children, title, actions }: PageWrapperProps) {
     extrapolate: 'clamp'
   });
 
+  const headerBackgroundOpacity = scrollOffsetY.interpolate({
+    inputRange: [0, headerScrollDistance],
+    outputRange: [0, 1],
+    extrapolate: 'clamp'
+  });
+
   return (
     <>
       <ScrollView
@@ -63,10 +66,17 @@ export function PageWrapper({ children, title, actions }: PageWrapperProps) {
         className="absolute left-0 right-0 w-full overflow-hidden justify-between flex flex-row px-4"
         style={{
           height: headerScrollHeight,
-          paddingTop: topSafeInset,
-          backgroundColor: themeDefinition.bgPrimary
+          paddingTop: topSafeInset
         }}
       >
+        <Animated.View
+          className="absolute left-0 top-0 right-0"
+          style={{
+            backgroundColor: themeDefinition.bgPrimary,
+            height: 90,
+            opacity: headerBackgroundOpacity
+          }}
+        />
         <Animated.Text
           className="self-end pb-4"
           style={{

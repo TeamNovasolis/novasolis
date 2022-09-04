@@ -20,6 +20,10 @@ const initialDevices = [
   {
     name: 'Cloudly Light 2',
     currentEffect: 'weather'
+  },
+  {
+    name: 'Garage Light',
+    currentEffect: 'white'
   }
 ];
 

@@ -22,3 +22,17 @@ export const reactNativePaperTheme: MD3Theme = {
     primary: themeDefinition.primary
   }
 };
+
+export const reactNativePaperTransparentTheme: MD3Theme = {
+  ...MD3DarkTheme,
+  dark: true,
+  roundness: 2,
+  version: 3,
+  mode: 'exact',
+  colors: {
+    ...MD3DarkTheme.colors,
+    surface: 'transparent',
+    background: 'transparent',
+    primary: themeDefinition.primary
+  }
+};

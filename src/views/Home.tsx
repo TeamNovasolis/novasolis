@@ -43,7 +43,8 @@ export function Home() {
         options={{
           headerShown: false,
           animation: 'fade_from_bottom',
-          animationDuration: 200
+          animationDuration: 200,
+          contentStyle: { backgroundColor: themeDefinition.bgPrimary }
         }}
         name="AddDevice"
         component={AddDevice}
@@ -52,7 +53,8 @@ export function Home() {
         options={{
           headerShown: false,
           animation: 'fade_from_bottom',
-          animationDuration: 200
+          animationDuration: 200,
+          contentStyle: { backgroundColor: themeDefinition.bgPrimary }
         }}
         name="DeviceDetail"
         component={DeviceDetail}
