@@ -1,16 +1,15 @@
-import { useState } from 'react';
 import { Home } from '../views/Home';
 import { Profile } from '../views/Profile';
 import { Settings } from '../views/Settings';
 import { Store } from '../views/Store';
-import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { reactNativePaperTheme } from '../theme/reactNativePaperTheme';
+import { View } from 'react-native';
 
 const Tab = createMaterialBottomTabNavigator();
 
 export function MainView() {
   return (
+    // <View>
     <Tab.Navigator>
       <Tab.Screen
         name="Home"
@@ -33,5 +32,6 @@ export function MainView() {
         options={{ tabBarIcon: 'cog' }}
       />
     </Tab.Navigator>
+    // </View>
   );
 }

@@ -1,18 +1,16 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useRef } from 'react';
 import { ScrollView, Animated, View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { textSizeEasing } from '../theme/easing';
 import { themeDefinition } from '../theme/reactNativePaperTheme';
 
-const Stack = createNativeStackNavigator();
-
 type PageWrapperProps = {
   children: React.ReactNode;
   title: string;
+  actions?: React.ReactNode;
 };
 
-export function PageWrapper({ children, title }: PageWrapperProps) {
+export function PageWrapper({ children, title, actions }: PageWrapperProps) {
   const { top: topSafeInset } = useSafeAreaInsets();
 
   const headerMaxHeight = 200;
@@ -20,7 +18,7 @@ export function PageWrapper({ children, title }: PageWrapperProps) {
   const headerScrollDistance = headerMaxHeight - headerMinHeight;
 
   const headerFontMaxSize = 38;
-  const headerFontMinSize = 24;
+  const headerFontMinSize = 22;
 
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
   const headerScrollHeight = scrollOffsetY.interpolate({
@@ -36,45 +34,67 @@ export function PageWrapper({ children, title }: PageWrapperProps) {
     easing: textSizeEasing
   });
 
+  const actionPadding = scrollOffsetY.interpolate({
+    inputRange: [0, headerScrollDistance],
+    outputRange: [11, 3],
+    extrapolate: 'clamp'
+  });
+
+  const headerBackgroundOpacity = scrollOffsetY.interpolate({
+    inputRange: [0, headerScrollDistance],
+    outputRange: [0, 1],
+    extrapolate: 'clamp'
+  });
+
   return (
-    <Stack.Navigator>
-      <Stack.Screen options={{ headerShown: false }} name={`${title}Stack`}>
-        {() => (
-          <>
-            <ScrollView
-              className="px-4"
-              onScroll={Animated.event(
-                [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
-                {
-                  useNativeDriver: false
-                }
-              )}
-            >
-              <View style={{ paddingTop: headerMaxHeight + topSafeInset }}>
-                {children}
-              </View>
-            </ScrollView>
-            <Animated.View
-              className="absolute left-0 right-0 w-max overflow-hidden flex flex-row px-4"
-              style={{
-                height: headerScrollHeight,
-                paddingTop: topSafeInset,
-                backgroundColor: themeDefinition.bgPrimary
-              }}
-            >
-              <Animated.Text
-                className="self-end pb-4"
-                style={{
-                  fontSize,
-                  color: themeDefinition.textColor
-                }}
-              >
-                {title}
-              </Animated.Text>
-            </Animated.View>
-          </>
+    <>
+      <ScrollView
+        className="px-4"
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
+          {
+            useNativeDriver: false
+          }
         )}
-      </Stack.Screen>
-    </Stack.Navigator>
+        scrollEventThrottle={16}
+      >
+        <View style={{ paddingTop: headerMaxHeight + topSafeInset }}>
+          {children}
+        </View>
+      </ScrollView>
+      <Animated.View
+        className="absolute left-0 right-0 w-full overflow-hidden justify-between flex flex-row px-4"
+        style={{
+          height: headerScrollHeight,
+          paddingTop: topSafeInset
+        }}
+      >
+        <Animated.View
+          className="absolute left-0 top-0 right-0"
+          style={{
+            backgroundColor: themeDefinition.bgPrimary,
+            height: 90,
+            opacity: headerBackgroundOpacity
+          }}
+        />
+        <Animated.Text
+          className="self-end pb-4"
+          style={{
+            fontSize,
+            color: themeDefinition.textColor
+          }}
+        >
+          {title}
+        </Animated.Text>
+        <Animated.View
+          className="self-end"
+          style={{
+            paddingBottom: actionPadding
+          }}
+        >
+          {actions}
+        </Animated.View>
+      </Animated.View>
+    </>
   );
 }

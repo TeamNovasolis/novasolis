@@ -22,6 +22,7 @@
     "expo": "46.0.10",
     "expo-splash-screen": "0.16.2",
     "expo-status-bar": "1.4.0",
+    "jotai": "1.8.2",
     "nativewind": "2.0.7",
     "react": "18.0.0",
     "react-dom": "18.0.0",
