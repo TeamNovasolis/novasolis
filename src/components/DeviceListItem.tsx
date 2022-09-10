@@ -2,6 +2,7 @@ import { Chip, Text } from 'react-native-paper';
 import { Image, View } from 'react-native';
 import { themeDefinition } from '../theme/reactNativePaperTheme';
 import { TouchableRipple } from 'react-native-paper';
+import { WebView } from 'react-native-webview';
 
 type DeviceListItemProps = {
   name: string;
