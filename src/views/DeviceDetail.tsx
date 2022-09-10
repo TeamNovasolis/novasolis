@@ -1,5 +1,6 @@
 import { View, Image } from 'react-native';
 import { Appbar, Card, Paragraph, Title } from 'react-native-paper';
+import { DeviceWebView } from '../components/DeviceWebView';
 import { themeDefinition } from '../theme/reactNativePaperTheme';
 
 export function DeviceDetail({ route, navigation }) {
@@ -13,11 +14,12 @@ export function DeviceDetail({ route, navigation }) {
         <Appbar.Action icon="dots-vertical" />
       </Appbar.Header>
       <View className="flex flex-col w-full items-center">
-        <Image
+        <DeviceWebView />
+        {/* <Image
           className="mr-3"
           style={{ width: 300, height: 300, resizeMode: 'contain' }}
           source={require('../assets/devices/example-icon-small-1.png')}
-        />
+        /> */}
         <Paragraph>Current Effect: {device.currentEffect}</Paragraph>
       </View>
     </View>
