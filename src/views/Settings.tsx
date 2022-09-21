@@ -1,7 +1,6 @@
 import { View } from 'react-native';
 import { PageWrapper } from '../components/PageWrapper';
 import { Text } from 'react-native-paper';
-import { DeviceWebView } from '../components/DeviceWebView';
 import { Device3dView } from '../components/Device3dView';
 
 export function Settings() {

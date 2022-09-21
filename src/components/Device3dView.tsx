@@ -1,42 +1,85 @@
-import { View } from 'react-native';
-import { Renderer, THREE } from 'expo-three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import SplineLoader from '@splinetool/loader';
-import { ExpoWebGLRenderingContext, GLView } from 'expo-gl';
-import { Asset } from 'expo-asset';
+import { GLView } from "expo-gl";
+import { Renderer, TextureLoader } from "expo-three";
+import { useEffect } from "react";
+import {
+  AmbientLight,
+  BoxGeometry,
+  Fog,
+  GridHelper,
+  Mesh,
+  MeshStandardMaterial,
+  PerspectiveCamera,
+  PointLight,
+  Scene,
+  SpotLight,
+} from "three";
 
 export function Device3dView() {
-  return (
-    <GLView
-      style={{ flex: 1, height: 300 }}
-      onContextCreate={async (gl: ExpoWebGLRenderingContext) => {
-        const renderer = new Renderer({ gl }) as any;
-        renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
+  let timeout;
 
-        const asset = Asset.fromModule(require('../assets/purple_icons.gltf'));
+  useEffect(() => {
+    // Clear the animation loop when the component unmounts
+    return () => clearTimeout(timeout);
+  }, []);
 
-        await asset.downloadAsync();
+  const onContextCreate = async (gl) => {
+    const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
+    const sceneColor = 0x6ad6f0;
 
-        const gltfLoader = new GLTFLoader();
+    // Create a WebGLRenderer without a DOM element
+    const renderer = new Renderer({ gl });
+    renderer.setSize(width, height);
+    renderer.setClearColor(sceneColor);
 
-        gltfLoader.load(asset.localUri, (gltf) => {
-          const scene = gltf.scene;
-          const camera = new THREE.PerspectiveCamera(
-            75,
-            gl.drawingBufferWidth / gl.drawingBufferHeight,
-            0.1,
-            1000
-          );
-          camera.position.z = 5;
+    const camera = new PerspectiveCamera(70, width / height, 0.01, 1000);
+    camera.position.set(2, 5, 5);
 
-          const animate = () => {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
-            gl.endFrameEXP();
-          };
-          animate();
-        });
-      }}
-    />
-  );
+    const scene = new Scene();
+    scene.fog = new Fog(sceneColor, 1, 10000);
+    scene.add(new GridHelper(10, 10));
+
+    const ambientLight = new AmbientLight(0x101010);
+    scene.add(ambientLight);
+
+    const pointLight = new PointLight(0xffffff, 2, 1000, 1);
+    pointLight.position.set(0, 200, 200);
+    scene.add(pointLight);
+
+    const spotLight = new SpotLight(0xffffff, 0.5);
+    spotLight.position.set(0, 500, 100);
+    spotLight.lookAt(scene.position);
+    scene.add(spotLight);
+
+    const cube = new IconMesh();
+    scene.add(cube);
+
+    camera.lookAt(cube.position);
+
+    function update() {
+      cube.rotation.y += 0.05;
+      cube.rotation.x += 0.025;
+    }
+
+    // Setup an animation loop
+    const render = () => {
+      timeout = requestAnimationFrame(render);
+      update();
+      renderer.render(scene, camera);
+      gl.endFrameEXP();
+    };
+    render();
+  };
+
+  return <GLView style={{ flex: 1, width: 300, height: 300 }} onContextCreate={onContextCreate} />;
+}
+
+class IconMesh extends Mesh {
+  constructor() {
+    super(
+      new BoxGeometry(1.0, 1.0, 1.0),
+      new MeshStandardMaterial({
+        map: new TextureLoader().load(require("./icon.jpg")),
+      })
+    );
+  }
 }
