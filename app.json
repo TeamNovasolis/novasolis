@@ -4,7 +4,8 @@
     "slug": "novasolis",
     "owner": "teamnovasolis",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": ["**/*"],
+    "jsEngine": "hermes"
   },
   "name": "novasolis"
 }

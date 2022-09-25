@@ -2,6 +2,8 @@ import { Chip, Text } from 'react-native-paper';
 import { Image, View } from 'react-native';
 import { themeDefinition } from '../theme/reactNativePaperTheme';
 import { TouchableRipple } from 'react-native-paper';
+import { WebView } from 'react-native-webview';
+// import { Device3dView } from './Device3dView';
 
 type DeviceListItemProps = {
   name: string;
@@ -28,11 +30,9 @@ export function DeviceListItem({
         className="py-5 pr-5 pl-3"
       >
         <View className="flex flex-row">
-          <Image
-            className="mr-3"
-            style={{ width: 80, height: 80, resizeMode: 'contain' }}
-            source={require('../assets/devices/example-icon-small-1.png')}
-          />
+          <View>
+            {/* <Device3dView /> */}
+          </View>
           <View className="flex flex-col">
             <Text variant="bodyLarge">{name}</Text>
             <View className="flex flex-row">
